@@ -57,6 +57,11 @@ Embedded subtitles (if any) will be converted to mov_text for mp4, or ass for mk
 
 Conversion may fail if the video/audio codec is incompatible; I won't auto-convert for you.
 
+### cf_metadata_clear ###
+
+Clear stream and container metadata.  Nothing else is changed.
+Note that ffmpeg will add a few basic metadata to the container.
+
 
 ## filter ##
 
@@ -77,8 +82,3 @@ Speed video and audio up or down.
 ### ffprobe ###
 
 Dump the info of all dragged file(s) and pause.
-
-### metadata_clear ###
-
-Clear stream and container metadata.  Nothing else is changed.
-Note that ffmpeg will add a few basic metadata to the container.
