@@ -32,20 +32,20 @@ Throws audio away, leaving only video.
 
 Various subtitle processing.
 
-### cs_ass, cs_ssa, cs_srt ###
+### cs_ass, cs_srt ###
 
-Convert subtitle file(s) to ass, ssa, or srt.
+Convert subtitle file(s) to ass or srt.
 
 ### cs_embed ###
 
-Embed an ass/ssa/srt file (in this order) to input video, saved as mkv.
+Embed an ass/srt file (in this order) to input video, saved as mkv.
 The subtitle file must have same name as the video.
 All subtitle tracks will be discarded before adding the new track.
 
 ### cs_hardsub ###
 
-Hardsub an ass/ssa/srt/embedded subtitle (in this order) to input video, saved as mkv.
-The ass/ssa/srt file must have same name as the video.
+Hardsub an ass/srt/embedded subtitle (in this order) to input video, saved as mkv.
+The ass/srt file must have same name as the video.
 All subtitle tracks will be discarded.
 
 
