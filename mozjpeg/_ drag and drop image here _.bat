@@ -1,17 +1,19 @@
 @echo off
+set exe="%~dp0cjpeg.exe"
 if not "%~1"=="" goto loop
 
 cjpeg -version
-echo High efficient JPEG compression - even smaller than photoshop export.
-echo Usage: In File explorer, drag and drop jpg and png images onto this file.
+echo High efficient JPEG compression - smaller and/or better quality than photoshop export.
+echo Usage: In File explorer, drag and drop images onto this file.
+echo (Non-jpeg files will be converted by ffmpeg, if ffmpeg is on Windows PATH.)
 echo.
 pause
 goto end
 
 :loop
-echo off
 set input=%~nx1
 if /i "%~x1"==".jpg" goto comp
+if /i "%~x1"==".jpeg" goto comp
 echo Converting %~nx1 to jpeg.
 set output=%~n1.jpg
 ffmpeg -y -loglevel error -i "%input%" -c:v mjpeg -frames:v 1 -q:v 2 -b:v 999999999k -an "%output%"
@@ -26,26 +28,19 @@ goto end
 
 :comp
 echo | set /p print=Compressing %~nx1 .
-set output=%input:.jpg=.q30.jpg%
-"%~dp0cjpeg.exe" -quality 30 "%input%" > "%output%"
+%exe% -quality 30 "%input%" > "%~n1.q30.jpg"
 echo | set /p print=.
-set output=%input:.jpg=.q40.jpg%
-"%~dp0cjpeg.exe" -quality 40 "%input%" > "%output%"
+%exe% -quality 40 "%input%" > "%~n1.q40.jpg"
 echo | set /p print=.
-set output=%input:.jpg=.q50.jpg%
-"%~dp0cjpeg.exe" -quality 50 "%input%" > "%output%"
+%exe% -quality 50 "%input%" > "%~n1.q50.jpg"
 echo | set /p print=.
-set output=%input:.jpg=.q60.jpg%
-"%~dp0cjpeg.exe" -quality 60 "%input%" > "%output%"
+%exe% -quality 60 "%input%" > "%~n1.q60.jpg"
 echo | set /p print=.
-set output=%input:.jpg=.q70.jpg%
-"%~dp0cjpeg.exe" -quality 70 "%input%" > "%output%"
+%exe% -quality 70 "%input%" > "%~n1.q70.jpg"
 echo | set /p print=.
-set output=%input:.jpg=.q80.jpg%
-"%~dp0cjpeg.exe" -quality 80 "%input%" > "%output%"
+%exe% -quality 80 "%input%" > "%~n1.q80.jpg"
 echo | set /p print=.
-set output=%input:.jpg=.q90.jpg%
-"%~dp0cjpeg.exe" -quality 90 "%input%" > "%output%"
+%exe% -quality 90 "%input%" > "%~n1.q90.jpg"
 echo | set /p print= done.
 goto next
 
