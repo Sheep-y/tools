@@ -14,10 +14,10 @@ goto end
 set input=%~nx1
 if /i "%~x1"==".jpg" goto comp
 if /i "%~x1"==".jpeg" goto comp
-echo Converting %~nx1 to jpeg.
+echo Converting %~nx1 to jpg.
 set output=%~n1.jpg
 ffmpeg -y -loglevel error -i "%input%" -c:v mjpeg -frames:v 1 -q:v 2 -b:v 999999999k -an "%output%"
-if ERRORLEVEL 1 echo ERROR - Cannot convert %~nx1 to jpeg.
+if ERRORLEVEL 1 echo ERROR - Cannot convert %~nx1 to jpg.
 if ERRORLEVEL 255 goto noffmpeg
 set input=%output%
 if exist "%output%" goto comp
