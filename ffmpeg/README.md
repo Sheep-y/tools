@@ -7,30 +7,34 @@ This means output will never overwrite the input, though it is possible to indir
 
 ffmpeg must be on the PATH environment variable.
 
-Video, Audio, Subtitle, metadata, and container format are preserved whenever possible.
+Video, Audio, Subtitle, metadata, and container format are preserved.
 When re-encode is necessary (e.g. hardsub and other filters), very high quality encoding is used to preserve data, and should be followed by conversion to more efficient format(s).
 
 ## cv (codec video) ##
 
-Convert video to h264/hevc/vp9.  Audio is copied (if any).
+Convert video to h264/hevc/vp9.  Audio and other data is copied (if any).
 
 ### cv_none ###
 
-Throws video away, leaving only audio.
+Throws video away, leaving only audio and subtitle.
 
 
 ## ca (codec audio) ##
 
-Convert audio to aac-lc/vorbis.  Video is copied (if any).
+Convert audio to aac or opus.  Video and other data is copied (if any).
 
 ### ca_none ###
 
-Throws audio away, leaving only video.
+Throws audio away, leaving only video and subtitle.
 
 
 ## cs (codec subtitle) ##
 
 Various subtitle processing.
+
+### cs_none ###
+
+Throws subtitle away, leaving only video and audio.
 
 ### cs_ass, cs_srt ###
 
@@ -67,6 +71,10 @@ Note that ffmpeg will add a few basic metadata to the container.
 
 Filtered video and/or audio.
 
+### filter_interpol ###
+
+Interpolate or drop frames to reach a specific fps.
+
 ### filter_scale ###
 
 Scale video up or down.
@@ -75,6 +83,9 @@ Scale video up or down.
 
 Speed video and audio up or down.
 
+### filter_vidstab ###
+
+Stabilize video.
 
 
 ## other ##
